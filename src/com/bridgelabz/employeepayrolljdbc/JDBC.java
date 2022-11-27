@@ -3,6 +3,8 @@ package com.bridgelabz.employeepayrolljdbc;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Enumeration;
 
@@ -39,7 +41,15 @@ public static void main(String[] args) {
 			System.out.println(" " + driverClass.getClass().getName());
 		}
 	}
+	public static void retrieveData(Connection connection) throws SQLException {
+		PreparedStatement preparedStatement = connection.prepareStatement("select * from employee_payroll where id=?");
+		preparedStatement.setInt(1, 1);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		while (resultSet.next()) {
+			System.out.println(resultSet.getInt("id"));
+			System.out.println(resultSet.getString("name"));
+		}
+	}
+
 
 }
-
-
