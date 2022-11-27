@@ -51,5 +51,18 @@ public static void main(String[] args) {
 		}
 	}
 
+	public static void updateData(Connection connection) throws SQLException {
+		// Scanner sc = new Scanner(System.in);
+		PreparedStatement preparedStatement = connection
+				.prepareStatement("update employee_payroll set salary = ? where id =?;");
+		System.out.println("Enter salary to be updated: ");
+		// double salary = sc.nextDouble();
+		System.out.println("Enter at which id you want to update salary: ");
+		// int id = sc.nextInt();
+		preparedStatement.setDouble(1, 300000.00);
+		preparedStatement.setInt(2, 2);
+		preparedStatement.executeUpdate();
+		System.out.println("Updated Successfully.....!!!");
+	}
 
 }
